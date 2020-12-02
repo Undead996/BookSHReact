@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>React JS1</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/react/16.2.0/umd/react.development.js'></script> <script src='https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.2.0/umd/react-dom.development.js'></script> <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+  <script src="js/Book.js" type="text/babel"></script>
+  <script src="js/BookWithoutPrice.js" type="text/babel"></script>
+  <script src="js/AddBookForm.js" type="text/babel"></script>
+  <script src="js/Basket.js" type="text/babel"></script>
+  <script src="js/SortBook.js" type="text/babel"></script>
+  <script src="js/App.js" type="text/babel"></script>
+</head>
+<body>
+
+<div id="app"></div>
+
+<script src="js/data.js"></script>
+<script type="text/babel">
+
+ReactDOM.render(
+  <App dataBook={dataBook} />,
+  document.getElementById('app')
+);
+
+</script>
+
+
+</body>
+</html>
