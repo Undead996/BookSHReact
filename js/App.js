@@ -48,6 +48,7 @@ class App extends React.Component{
       }
     });
     this.setState({dataBook:newState});
+    // console.log(this.state.dataBook)
   }
   addBasket = (id) => {
     const items = Object.assign({}, this.state.items);
@@ -69,7 +70,6 @@ class App extends React.Component{
     this.setState( {items} )
   }
   paginClick(e){
-    console.log(e.target.id);
     this.setState({
       page: e.target.id
     })
@@ -79,13 +79,11 @@ class App extends React.Component{
       let lastOnPage = this.state.page * booksOnPage;
       let firstOnPage = lastOnPage - booksOnPage;
       let currentBooks = this.state.dataBook.slice(firstOnPage, lastOnPage);
-      console.log(currentBooks);
 
       let pageNumbers = [];
       for (let i = 1; i <= Math.ceil(this.state.dataBook.length / booksOnPage); i++) {
         pageNumbers.push(i);
       }
-      console.log(pageNumbers);
 
       let pagination = pageNumbers.map(number => (
         number == this.state.page ?
