@@ -20,24 +20,13 @@ class App extends React.Component{
         super(props);
         this.state = {
           dataBook: props.dataBook,
-          items: {}
+          items: {},
+          page: 1,
         };
-
-        /*setTimeout(()=>{
-          this.setState({
-              dataBook: dataBook.slice().concat({
-                  id: 20,
-                  title: '21121',
-                  author: '21121',
-                  price: null,
-                  img: ''
-              })
-          })
-        },5000);*/
-
         this.removeBasket = this.removeBasket.bind(this);
         this.addBook = this.addBook.bind(this);
         this.sortBook = this.sortBook.bind(this);
+        this.paginClick = this.paginClick.bind(this);
     }
     
   addBook(book){
@@ -79,8 +68,36 @@ class App extends React.Component{
 
     this.setState( {items} )
   }
+  paginClick(e){
+    console.log(e.target.id);
+    this.setState({
+      page: e.target.id
+    })
+  }
     render(){
-     const books = this.state.dataBook.map( book => (
+      const booksOnPage = 6;
+      let lastOnPage = this.state.page * booksOnPage;
+      let firstOnPage = lastOnPage - booksOnPage;
+      let currentBooks = this.state.dataBook.slice(firstOnPage, lastOnPage);
+      console.log(currentBooks);
+
+      let pageNumbers = [];
+      for (let i = 1; i <= Math.ceil(this.state.dataBook.length / booksOnPage); i++) {
+        pageNumbers.push(i);
+      }
+      console.log(pageNumbers);
+
+      let pagination = pageNumbers.map(number => (
+        number == this.state.page ?
+        <li key={number} id={number} className="page-select" onClick={this.paginClick}>
+          {number}
+        </li> 
+        :
+        <li key={number} id={number} className="page-noselect"onClick={this.paginClick}>
+          {number}
+        </li>
+       ));
+     const books = currentBooks.map( book => (
         book.price ? 
         <Book 
           key={book.id}
@@ -111,8 +128,10 @@ class App extends React.Component{
        <h2>Добавить книгу</h2>
        <AddBookForm addBook={this.addBook}/>
        <SortBook
-        sortBook={this.sortBook}/>
-       {books};
+       sortBook={this.sortBook}/>
+       <ul className="pagination">{pagination}</ul>
+       {books}
+       <ul className="pagination">{pagination}</ul>
      </div>
     }
 }
