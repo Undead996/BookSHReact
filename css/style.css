@@ -94,4 +94,18 @@
     background: #0f3f1b;
     border-color: #0f3f1b;
   }
-
+  .check-container{
+    display: flex;
+    margin: 10px;
+    font-size: 1.5rem;
+  }
+  .check{
+      color: rgb(138, 138, 138);
+      width: 45px;
+      height: 45px;
+      cursor: pointer;
+      font-size: 2.5rem;
+  }
+  .checked{
+      color: #28a745;
+  }

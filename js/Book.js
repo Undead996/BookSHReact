@@ -48,6 +48,7 @@ class Book extends React.Component {
         }}
         >В корзину</a>
     </p>
+    <p>Оценка:</p><Stars/>
   </div>
     }
 }
